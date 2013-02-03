@@ -41,3 +41,4 @@ gem 'cancan'
 gem 'twitter-bootstrap-rails'
 gem 'haml'
 gem 'haml-rails'
+gem "rails-backbone"
