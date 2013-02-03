@@ -19,3 +19,4 @@
 //= require backbone_datalink
 //= require backbone/photoads
 //= require_tree .
+//= require jquery-fileupload/
