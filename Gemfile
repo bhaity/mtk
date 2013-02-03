@@ -57,3 +57,5 @@ group :development do
 end
 gem 'factory_girl'
 gem "factory_girl_rails"
+gem "jquery-fileupload-rails"
+gem 'carrierwave'

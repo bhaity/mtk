@@ -1,7 +1,15 @@
 Photoads::Application.routes.draw do
+  resources :photos
+
+
   devise_for :users
+
   namespace :admin do
     resources :users
+  end
+
+  namespace :users, :path => 'users/:user_id' do
+    resources :photos
   end
 
   # The priority is based upon order of creation:
