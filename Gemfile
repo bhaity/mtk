@@ -38,7 +38,22 @@ gem 'jquery-rails'
 # gem 'debugger'
 gem 'devise'
 gem 'cancan'
+gem 'rolify'
 gem 'twitter-bootstrap-rails'
 gem 'haml'
 gem 'haml-rails'
 gem "rails-backbone"
+gem "cucumber"
+gem "rspec"
+gem "rspec-rails", :require=>false
+gem 'cucumber-rails', :require => false
+
+gem 'database_cleaner'
+
+group :development do
+  gem 'guard'
+  gem 'guard-spork'
+  gem 'guard-cucumber'
+end
+gem 'factory_girl'
+gem "factory_girl_rails"
