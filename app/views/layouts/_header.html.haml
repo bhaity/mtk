@@ -1,3 +1,4 @@
+= render '/layouts/test'
 .navbar.navbar-fluid-top
   .navbar-inner
     .container-fluid
@@ -9,8 +10,12 @@
       .container.nav-collapse
         %ul.nav
           = render '/layouts/login'
-          %li= link_to "Link 1", "/path1"
-          %li= link_to "Link 2", "/path2"
-          %li= link_to "Link 3", "/path3"
-
-
+          - if can? :manage, User
+            %li.dropdown
+              %a.dropdown-toggle#dLabel{"role"=>"button", "data-toggle"=>"dropdown", "data-target"=>"#", :href=>"/#"}
+                Admin
+                %b.caret
+              %ul.dropdown-menu{"role"=>"menu", "aria-labelledby"=>"dLabel"}
+                %li= link_to "Users", admin_users_path
+:javascript
+  $('.dropdown-toggle').dropdown();
