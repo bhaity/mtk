@@ -1,19 +1,17 @@
 %h1 Listing photos
 
-%table
+%table#photos
   %tr
     %th Name
     %th
     %th
     %th
 
-  - @photos.each do |photo|
-    %tr
-      %td= photo.name
-      %td= link_to 'Show', p_show(photo)
-      %td= link_to 'Edit', p_edit(photo)
-      %td= link_to 'Destroy', p_show(photo), method: :delete, data: { confirm: 'Are you sure?' }
-
+  = render :partial => "/photos/photo", :collection => @photos
 %br
 
-= link_to 'New Photo', new_photo_path
+- if can? :create, Photo
+  = form_for Photo.new do |f|
+    = f.file_field :image, multiple: true, name: "photo[image]"
+
+  = link_to 'New Photo', new_photo_path

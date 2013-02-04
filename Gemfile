@@ -59,3 +59,4 @@ gem 'factory_girl'
 gem "factory_girl_rails"
 gem "jquery-fileupload-rails"
 gem 'carrierwave'
+gem 'rmagick'

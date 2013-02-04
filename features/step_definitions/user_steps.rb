@@ -3,9 +3,40 @@ Given /^a user$/ do
   login_as @user
 end
 
+Given /^another user$/ do
+  @other_user = FactoryGirl.create(:user)
+  login_as @other_user
+end
+
 Given /^an admin$/ do
   step %[a user]
   @user.add_role(:admin)
+end
+
+When /^I add two photos$/ do
+  @photo = Photo.create({:is_private=>false})
+  @user.add_role(:owner, @photo)
+
+  @photo_1 = Photo.create
+  @user.add_role(:owner, @photo_1)
+
+end
+
+When /^I go to my user photo page$/ do
+  visit users_photos_path(@user.id)
+end
+
+Then /^I should see all my photos$/ do
+  page.should have_css("table#photos tr", :count => 3)
+end
+
+When /^I go to another user photo page$/ do
+  step %[another user]
+  visit users_photos_path(@user.id)
+end
+
+Then /^I should only see his visible photos$/ do
+  page.should have_css("table#photos tr", :count => 2)
 end
 
 When /^I go to the homepage$/ do

@@ -1,7 +1,9 @@
 module PhotosHelper
   def p_index
     if params["controller"] == "users/photos"
+      users_photos_path(params[:user_id])
     else
+      photos_path
     end
   end
 

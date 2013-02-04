@@ -19,4 +19,5 @@
 //= require backbone_datalink
 //= require backbone/photoads
 //= require_tree .
-//= require jquery-fileupload/
+//= require jquery-fileupload/basic/
+//= require jquery-fileupload/vendor/tmpl

@@ -1,0 +1,8 @@
+%tr
+  %td
+    = image_tag photo.image.medium
+  %td= link_to 'Show', p_show(photo)
+  - if can? :edit, photo
+    %td= link_to 'Edit', p_edit(photo)
+  - if can? :manage, photo
+    %td= link_to 'Destroy', p_show(photo), method: :delete, data: { confirm: 'Are you sure?' }

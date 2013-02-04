@@ -1,8 +1,10 @@
 class PhotosController < ApplicationController
+  load_and_authorize_resource
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @photos = Photo.visible
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @photos }
@@ -40,16 +42,8 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @photo = Photo.new(params[:photo])
-
-    respond_to do |format|
-      if @photo.save
-        current_user.add_role(:owner, @photo)
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render json: @photo, status: :created, location: @photo }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
-      end
+    if @photo.save
+      current_user.add_role(:owner, @photo)
     end
   end
 

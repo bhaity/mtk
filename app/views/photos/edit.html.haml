@@ -1,7 +1,7 @@
 %h1 Editing photo
 
-= render 'form'
+= render '/photos/form'
 
-= link_to 'Show', @photo
+= link_to 'Show', p_show(@photo)
 \|
-= link_to 'Back', photos_path
+= link_to 'Back', p_index

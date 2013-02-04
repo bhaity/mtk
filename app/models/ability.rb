@@ -2,10 +2,21 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :read, Photo, ["is_private = ?", false]  do |photo|
+      photo.is_private == false
+    end
     if user
       if user.has_role?(:admin)
         can :manage, User
+        can :manage, Photo
       else
+        can :create, Photo
+        can :manage, Photo do |photo|
+          user.has_role?(:owner, photo)
+        end
+        can :read, Photo, ["is_private = ?", false]  do |photo|
+          photo.is_private == false
+        end
       end
     end
     # Define abilities for the passed in user here. For example:

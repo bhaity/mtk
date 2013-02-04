@@ -9,5 +9,8 @@
   .field
     = f.label :name
     = f.text_field :name
+  .field
+    = f.file_field :image, multiple: true, name: "photo[image]"
   .actions
     = f.submit 'Save'
+  = render 'photos/upload'
