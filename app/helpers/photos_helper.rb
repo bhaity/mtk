@@ -1,4 +1,8 @@
 module PhotosHelper
+  def is_my_upload_page?
+    params[:controller] == 'users/photos' && current_user && params[:user_id].to_i == current_user.id
+  end
+
   def p_index
     if params["controller"] == "users/photos"
       users_photos_path(params[:user_id])

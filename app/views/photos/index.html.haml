@@ -10,8 +10,9 @@
   = render :partial => "/photos/photo", :collection => @photos
 %br
 
-- if can? :create, Photo
-  = form_for Photo.new do |f|
-    = f.file_field :image, multiple: true, name: "photo[image]"
+- if is_my_upload_page?
+  - if can? :create, Photo
+    = form_for Photo.new do |f|
+      = f.file_field :image, multiple: true, name: "photo[image]"
 
-  = link_to 'New Photo', new_photo_path
+    = link_to 'New Photo', new_photo_path
